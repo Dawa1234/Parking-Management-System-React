@@ -1,0 +1,75 @@
+/* -------------------------------- Outside layer -------------------------------- */
+#register {
+  display: none; /* Hidden by default */
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto;
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+/* -------------------------------- Outside layer -------------------------------- */
+
+/* -------------------------------- Main content -------------------------------- */
+#register .form {
+  margin-top: 60px;
+  width: 500px;
+  height: 700px;
+  background-color: rgb(241, 241, 241);
+}
+/* -------------------------------- Main content -------------------------------- */
+
+/* -------------------------------- Form content -------------------------------- */
+#register .inside-form {
+  padding: 30px;
+}
+/* -------------------------------- Main content -------------------------------- */
+
+/* -------------------------------- Top header content -------------------------------- */
+#register header {
+  /* background-color: red; */
+  position: relative;
+  text-align: center;
+  height: 100px;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(163, 163, 163);
+  border-bottom-style: solid;
+}
+
+#register header small {
+  /* background-color: red; */
+  color: grey;
+  font-size: 16px;
+}
+
+/* Close button */
+#register header span {
+  background-color: rgb(54, 54, 54);
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  color: rgb(255, 255, 255);
+  border-width: 0px;
+  font-size: 20px;
+}
+#register header span:hover {
+  background-color: rgb(85, 85, 85);
+  cursor: pointer;
+}
+/* -------------------------------- Top header content -------------------------------- */
+
+/* -------------------------------- Sign up button -------------------------------- */
+#register Button {
+  background-color: rgb(56, 56, 56);
+  font-size: 20px;
+  border-width: 0px;
+}
+#register Button:hover {
+  background-color: rgb(41, 41, 41);
+}
+/* -------------------------------- Sign up button -------------------------------- */

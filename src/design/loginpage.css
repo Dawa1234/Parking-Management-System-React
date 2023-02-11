@@ -1,12 +1,13 @@
 .login-box {
-  background-color: rgb(245, 245, 245);
-  height: 450px;
-  width: 450px;
+  background-color: white;
+  height: 470px;
+  width: 500px;
   color: rgb(53, 53, 53);
   padding: 30px;
   border-radius: 10px;
-  border-width: 20px;
   border-color: black;
+  box-shadow: 0px 0px 15px 5px rgb(175, 175, 175);
+  font-weight: bold;
 }
 
 /* ------------------------ Whole button ------------------------------ */
@@ -26,24 +27,28 @@ Button {
   width: 60%;
   font-size: 20px;
   color: rgb(58, 58, 58);
-  border-width: 1px;
-  border-color: rgb(58, 58, 58);
-  background-color: rgb(255, 251, 0);
+  border: none;
+  box-shadow: 0px 0px 5px 5px rgb(230, 230, 230);
+  background-color: rgb(228, 225, 39);
+}
+#new-acc:hover {
+  background-color: rgb(190, 188, 30);
 }
 
+/* Div box */
 .create-acc {
   position: relative;
   display: flex;
   width: 100%;
-  height: 175px;
+  height: 150px;
   justify-content: center;
   align-items: flex-end;
 }
 
 .create-acc #line {
-  top: 4rem;
+  top: 3rem;
   position: absolute;
-  width: 100%;
+  width: 90%;
   height: 1px;
   background-color: rgb(182, 182, 182);
 }
@@ -52,7 +57,55 @@ Button {
 /* ------------------------------ Login Button------------------------------ */
 #login {
   background-color: rgb(56, 56, 56);
-  border-width: 1px;
-  border-color: white;
+  border-width: 0px;
+}
+#login:hover {
+  background-color: rgb(34, 34, 34);
 }
 /* ------------------------------ Login Button------------------------------ */
+
+/* ------------------------------ forgot-password ------------------------------ */
+#forgot-password {
+  text-align: center;
+}
+#forgot-password a {
+  color: rgb(56, 56, 56);
+  text-decoration: none;
+}
+#forgot-password a:hover {
+  color: rgb(56, 56, 56);
+  text-decoration: underline;
+}
+/* ------------------------------ forgot-password ------------------------------ */
+/* ------------------------------ Error message ------------------------------ */
+#error {
+  opacity: 0;
+  text-align: center;
+  color: rgb(236, 71, 71);
+}
+/* ------------------------------ Error message ------------------------------ */
+
+/* ------------------------------ Media Query ------------ */
+@media (max-width: 1100px) {
+  .login-box {
+    width: 50vw;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 657px) {
+  .login-box {
+    width: 65vw;
+    padding: 10px;
+  }
+}
+@media (max-width: 450px) {
+  .login-box {
+    margin: 0px;
+    width: 100vw;
+    padding: 10px;
+  }
+  #new-acc {
+    width: 100%;
+  }
+}
