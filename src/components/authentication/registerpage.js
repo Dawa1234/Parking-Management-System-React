@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Form, FormGroup, Input } from "reactstrap";
-import "../design/reigsterpage.css";
-import useServices from "../services/useServices";
+import "../../design/authentication_css/reigsterpage.css";
+import useServices from "../../services/useServices";
 
 const Register = () => {
   //Hooks

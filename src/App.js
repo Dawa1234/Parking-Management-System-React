@@ -1,8 +1,8 @@
 import "./App.css";
-import Login from "./components/loginpage";
+import Login from "./components/authentication/loginpage";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Register from "./components/registerpage";
-import BottomInformation from "./components/bottm_information";
+import BottomInformation from "./components/bottom_info/bottm_information";
+import Register from "./components/authentication/registerpage";
 
 function App() {
   return (

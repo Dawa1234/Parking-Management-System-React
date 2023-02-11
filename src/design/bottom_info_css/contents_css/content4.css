@@ -1,0 +1,12 @@
+.content4 {
+  margin: 30px 50px 0px 50px;
+  height: 250px;
+  width: 200px;
+}
+
+#img {
+  height: 200px;
+  width: inherit;
+  background-image: url(../../../images/qr.jpg);
+  background-size: contain;
+}

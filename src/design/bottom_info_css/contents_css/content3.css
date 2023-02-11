@@ -1,0 +1,20 @@
+.content3 {
+  margin: 30px 50px 0px 50px;
+  height: 250px;
+  width: 200px;
+  /* background-color: red; */
+}
+
+.content3 a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+.content3 a:hover {
+  color: yellow;
+}
+
+@media (max-width: 600px) {
+  .content3 {
+    height: 60px;
+  }
+}
