@@ -30,6 +30,7 @@ Button {
   border: none;
   box-shadow: 0px 0px 5px 5px rgb(230, 230, 230);
   background-color: rgb(228, 225, 39);
+  z-index: 0;
 }
 #new-acc:hover {
   background-color: rgb(190, 188, 30);

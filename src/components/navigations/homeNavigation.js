@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "reactstrap";
+import "../../design/navigation_css/homeNavigation.css";
 
 const HomeNavigation = () => {
   const registerWindow = (e) => {
@@ -14,9 +15,16 @@ const HomeNavigation = () => {
       {/* HomeNavigation Bar */}
       <nav>
         <div className="links">
-          <Link to="/home">Home</Link>
+          <div className="image-layer">
+            <div id="logo-img"></div>
+          </div>
+          <Link id="nav-link" to="/home">
+            Home
+          </Link>
           <br />
-          <Link to="/">Login</Link>
+          <Link id="nav-link" to="/">
+            Login
+          </Link>
         </div>
         <div>
           <Button onClick={registerWindow}>Sign Up</Button>

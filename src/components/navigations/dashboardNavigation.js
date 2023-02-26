@@ -5,10 +5,18 @@ const DashboardPageNavigation = () => {
   return (
     <>
       <nav className="dashboardPageNavigation">
-        <div>Image</div>
-        <Link to="parkingSlot">Parking Slot</Link>
-        <Link to="floor">Floors</Link>
-        <Link to="vehicle">Vehicle</Link>
+        <div className="image-layer">
+          <div id="logo-img"></div>
+        </div>
+        <Link id="nav-link" to="parkingSlot">
+          Parking Slot
+        </Link>
+        <Link id="nav-link" to="floor">
+          Floors
+        </Link>
+        <Link id="nav-link" to="vehicle">
+          Vehicle
+        </Link>
       </nav>
       <Outlet />
     </>
