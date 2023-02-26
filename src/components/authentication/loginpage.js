@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import "../../design/authentication_css/loginpage.css";
 import useServices from "../../services/useServices";
@@ -8,6 +9,7 @@ const Login = () => {
   const [UsernameController, setUsernameController] = useState("");
   const [PasswordController, setPasswordController] = useState("");
   const [errormessage, setErrormessage] = useState("");
+  const navigate = useNavigate();
 
   // Error message
   useEffect(() => {
@@ -21,7 +23,8 @@ const Login = () => {
     useServices
       .LoginFunction(UsernameController, PasswordController)
       .then((response) => {
-        window.alert(`${response.data.status}`);
+        // window.alert(`${response.data.status}`);
+        navigate("/dashboard");
       })
       .catch((err) => {
         // Set error message

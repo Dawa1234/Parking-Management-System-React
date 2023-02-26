@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../../../design/bottom_info_css/contents_css/content2.css";
 const Content2 = () => {
   return (
@@ -9,9 +10,9 @@ const Content2 = () => {
         </header>
         {/* Bottom info */}
         <div>
-          <a href="#">
+          <Link to="/ourPolicies">
             <small>Our polices</small>
-          </a>
+          </Link>
         </div>
       </div>
     </>
