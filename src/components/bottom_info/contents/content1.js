@@ -10,12 +10,18 @@ const Content1 = () => {
         </header>
         {/* Bottom info */}
         <div>
-          <span>Ic </span>
+          <span>
+            {/* Icon */}
+            <i className="material-icons">place</i>
+          </span>
           <small>Boudha, Kathmandu</small>
         </div>
         <br />
         <div>
-          <span>Ic </span>
+          <span>
+            {/* Icon */}
+            <i className="material-icons">phone</i>
+          </span>
           <small>+977-9840355789</small>
         </div>
       </div>

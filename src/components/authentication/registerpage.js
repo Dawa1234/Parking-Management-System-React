@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import "../../design/authentication_css/reigsterpage.css";
 import useServices from "../../services/useServices";
@@ -11,11 +11,68 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  // For validation
+  const [isfullnameInvalid, setIsfullnameInvalid] = useState(false);
+  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
+  const [isContactInvalid, setIsContactInvalid] = useState(false);
+  const [isUsernameInvalid, setIsUsernameInvalid] = useState(false);
+  const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
+  const [isConfirmPasswordInvalid, setIsConfirmPasswordInvalid] =
+    useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  // To get the data.
+  useEffect(() => {
+    // Fullname
+    if (fullname === "") {
+      setIsfullnameInvalid(true);
+    } else {
+      setIsfullnameInvalid(false);
+    }
+    // Contact
+    if (contact === "") {
+      setIsContactInvalid(true);
+    } else {
+      setIsContactInvalid(false);
+    }
+    // Email
+    if (email === "") {
+      setIsEmailInvalid(false);
+    } else {
+      if (!email.match("@")) {
+        setIsEmailInvalid(true);
+      }
+    }
+    // Username
+    if (username === "") {
+      setIsUsernameInvalid(true);
+    } else {
+      setIsUsernameInvalid(false);
+    }
+    // Password
+    if (password !== confirmPassword) {
+      setIsPasswordInvalid(true);
+      setIsConfirmPasswordInvalid(true);
+    } else {
+      setIsPasswordInvalid(false);
+      setIsConfirmPasswordInvalid(false);
+    }
+
+    if (
+      !isfullnameInvalid ||
+      !isContactInvalid ||
+      !isUsernameInvalid ||
+      !isEmailInvalid ||
+      !isPasswordInvalid
+    ) {
+      setButtonDisabled(true);
+    } else {
+      setButtonDisabled(false);
+    }
+  }, [fullname, email, contact, username, password, confirmPassword]);
 
   //   Assign Values
-  const changeFullname = (e) => {
+  const ChangeFullname = (e) => {
     setFullname(e.target.value);
-    // console.log(fullname);
   };
   const changeEmail = (e) => {
     setEmail(e.target.value);
@@ -48,11 +105,7 @@ const Register = () => {
       username: username,
       password: password,
     };
-    // console.log(fullname);
-    // console.log(email);
-    // console.log(contact);
-    // console.log(username);
-    // console.log(password);
+    // Send data to api
     useServices
       .RegisteFunction(userData)
       .then((response) => {
@@ -96,12 +149,13 @@ const Register = () => {
               {/* Full name */}
               <FormGroup>
                 <Input
-                  onChange={changeFullname}
+                  onChange={ChangeFullname}
                   name="fullname"
                   placeholder="Fullname"
                   bsSize="lg"
                   type="text"
                   value={fullname}
+                  invalid={isfullnameInvalid}
                 />
               </FormGroup>
               {/* Email */}
@@ -113,6 +167,7 @@ const Register = () => {
                   placeholder="Email"
                   bsSize="lg"
                   type="email"
+                  invalid={isEmailInvalid}
                 />
               </FormGroup>
               {/* Contact */}
@@ -124,6 +179,7 @@ const Register = () => {
                   placeholder="Contact"
                   bsSize="lg"
                   type="text"
+                  invalid={isContactInvalid}
                 />
               </FormGroup>
               {/* Username */}
@@ -135,6 +191,7 @@ const Register = () => {
                   placeholder="Username"
                   bsSize="lg"
                   type="text"
+                  invalid={isUsernameInvalid}
                 />
               </FormGroup>
               {/* Password */}
@@ -146,6 +203,7 @@ const Register = () => {
                   placeholder="Password"
                   bsSize="lg"
                   type="password"
+                  invalid={isPasswordInvalid}
                 />
               </FormGroup>
               <FormGroup>
@@ -156,10 +214,13 @@ const Register = () => {
                   placeholder="Confirm Password"
                   bsSize="lg"
                   type="password"
+                  invalid={isConfirmPasswordInvalid}
                 />
               </FormGroup>
               {/* Register button */}
-              <Button onClick={registerUser}>Sign up</Button>
+              <Button onClick={registerUser} disabled={buttonDisabled}>
+                Sign up
+              </Button>
             </div>
           </div>
         </div>

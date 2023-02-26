@@ -41,8 +41,8 @@ nav {
 /* ------------------------------------ Inside Logo ------------------------------------ */
 .logo {
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   background-color: rgb(49, 49, 49);
   display: flex;
   justify-content: center;

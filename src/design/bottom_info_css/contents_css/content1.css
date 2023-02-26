@@ -4,6 +4,14 @@
   width: 200px;
   /* background-color: red; */
 }
+.content1 div {
+  display: flex;
+  align-items: center;
+  /* background-color: red; */
+}
+.content1 i {
+  color: yellow;
+}
 
 @media (max-width: 600px) {
   .content1 {

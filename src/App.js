@@ -31,7 +31,7 @@ function App() {
             {/* break line */}
             <br />
             {/* Left side message */}
-            <h3>Park your vehicle on any spot that you like.</h3>
+            <h1>Park your vehicle on any spot that you like.</h1>
           </div>
           {/* Main content right side (Login UI) */}
           <Login />
