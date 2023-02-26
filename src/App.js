@@ -38,6 +38,7 @@ function App() {
         {/* Dashboard Page Navigation */}
         <Route path="/dashboard" element={<DashboardPageNavigation />}>
           <Route index element={<DashboardPage />} />
+          <Route path="" element={<DashboardPage />} />
           <Route path="parkingSlot" element={<ParkingSlotPage />} />
           <Route path="floor" element={<FloorPage />} />
           <Route path="vehicle" element={<VehiclePage />} />

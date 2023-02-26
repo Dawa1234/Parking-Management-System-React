@@ -10,24 +10,64 @@ const HomeNavigation = () => {
     // Show register form
     registerForm.style.display = "flex";
   };
+  // show nav Content
+  const showNavigationBar = () => {
+    const navigationContent = document.getElementById(
+      "navigation-content-home"
+    );
+    navigationContent.style.display = "flex";
+  };
+  // show nav Content
+  const hideNavigationBar = () => {
+    const navigationContent = document.getElementById(
+      "navigation-content-home"
+    );
+    navigationContent.style.display = "none";
+  };
   return (
     <>
-      {/* HomeNavigation Bar */}
-      <nav>
-        <div className="links">
-          <div className="image-layer">
-            <div id="logo-img"></div>
-          </div>
+      <div id="navigation-content-home">
+        <div onClick={hideNavigationBar} className="X">
+          X
+        </div>
+        <div>
           <Link id="nav-link" to="/home">
             Home
           </Link>
-          <br />
+        </div>
+        <div>
           <Link id="nav-link" to="/">
             Login
           </Link>
         </div>
+      </div>
+      {/* HomeNavigation Bar */}
+      <nav>
+        <div onClick={showNavigationBar} id="nav-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div className="links">
+          <div className="image-layer">
+            <div id="logo-img"></div>
+          </div>
+          <div>
+            <Link id="nav-link" to="/home">
+              Home
+            </Link>
+          </div>
+          <br />
+          <div>
+            <Link id="nav-link" to="/">
+              Login
+            </Link>
+          </div>
+        </div>
         <div>
-          <Button onClick={registerWindow}>Sign Up</Button>
+          <Button onClick={registerWindow} color="success">
+            Sign Up
+          </Button>
         </div>
       </nav>
       <Outlet />
