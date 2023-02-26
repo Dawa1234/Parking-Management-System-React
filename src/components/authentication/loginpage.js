@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import "../../design/authentication_css/loginpage.css";
 import useServices from "../../services/useServices";
+import Register from "./registerpage";
 
 const Login = () => {
   const [UsernameController, setUsernameController] = useState("");

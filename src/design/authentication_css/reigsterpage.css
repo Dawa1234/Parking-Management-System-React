@@ -1,6 +1,6 @@
 /* -------------------------------- Outside layer -------------------------------- */
 #register {
-  display: flex; /* Hidden by default */
+  display: none; /* Hidden by default */
   justify-content: center;
   /* align-items: center; */
   position: fixed; /* Stay in place */

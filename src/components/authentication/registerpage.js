@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Button, Form, FormGroup, Input } from "reactstrap";
+import { useState } from "react";
+import { Button, Form, FormGroup, FormFeedback, Input } from "reactstrap";
 import "../../design/authentication_css/reigsterpage.css";
 import useServices from "../../services/useServices";
 
@@ -19,56 +19,7 @@ const Register = () => {
   const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
   const [isConfirmPasswordInvalid, setIsConfirmPasswordInvalid] =
     useState(false);
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-  // To get the data.
-  useEffect(() => {
-    // Fullname
-    if (fullname === "") {
-      setIsfullnameInvalid(true);
-    } else {
-      setIsfullnameInvalid(false);
-    }
-    // Contact
-    if (contact === "") {
-      setIsContactInvalid(true);
-    } else {
-      setIsContactInvalid(false);
-    }
-    // Email
-    if (email === "") {
-      setIsEmailInvalid(false);
-    } else {
-      if (!email.match("@")) {
-        setIsEmailInvalid(true);
-      }
-    }
-    // Username
-    if (username === "") {
-      setIsUsernameInvalid(true);
-    } else {
-      setIsUsernameInvalid(false);
-    }
-    // Password
-    if (password !== confirmPassword) {
-      setIsPasswordInvalid(true);
-      setIsConfirmPasswordInvalid(true);
-    } else {
-      setIsPasswordInvalid(false);
-      setIsConfirmPasswordInvalid(false);
-    }
-
-    if (
-      !isfullnameInvalid ||
-      !isContactInvalid ||
-      !isUsernameInvalid ||
-      !isEmailInvalid ||
-      !isPasswordInvalid
-    ) {
-      setButtonDisabled(true);
-    } else {
-      setButtonDisabled(false);
-    }
-  }, [fullname, email, contact, username, password, confirmPassword]);
+  const [passwordMatch, setPasswordMatchInvalid] = useState(false);
 
   //   Assign Values
   const ChangeFullname = (e) => {
@@ -98,22 +49,86 @@ const Register = () => {
   // Regsiter new user
   const registerUser = (e) => {
     e.preventDefault();
-    let userData = {
-      fullname: fullname,
-      email: email,
-      contact: contact,
-      username: username,
-      password: password,
-    };
-    // Send data to api
-    useServices
-      .RegisteFunction(userData)
-      .then((response) => {
-        window.alert(`${response.data.status}`);
-      })
-      .catch((err) => {
-        window.alert(`${err.response.data.error}`);
-      });
+    if (
+      fullname === "" &&
+      email === "" &&
+      username === "" &&
+      contact === "" &&
+      password === "" &&
+      confirmPassword === ""
+    ) {
+      setIsConfirmPasswordInvalid(true);
+      setIsPasswordInvalid(true);
+      setIsContactInvalid(true);
+      setIsUsernameInvalid(true);
+      setIsEmailInvalid(true);
+      setIsfullnameInvalid(true);
+      return;
+    }
+    if (fullname !== "") {
+      setIsfullnameInvalid(false);
+      if (email !== "") {
+        setIsEmailInvalid(false);
+
+        if (username !== "") {
+          setIsUsernameInvalid(false);
+
+          if (contact !== "") {
+            setIsContactInvalid(false);
+
+            if (password !== "") {
+              setIsPasswordInvalid(false);
+
+              if (confirmPassword !== "") {
+                if (password === confirmPassword) {
+                  setIsConfirmPasswordInvalid(false);
+                  setIsPasswordInvalid(false);
+                  setIsContactInvalid(false);
+                  setIsUsernameInvalid(false);
+                  setIsEmailInvalid(false);
+                  setIsfullnameInvalid(false);
+                  setPasswordMatchInvalid(false);
+                  let userData = {
+                    fullname: fullname,
+                    email: email,
+                    contact: contact,
+                    username: username,
+                    password: password,
+                  };
+                  // Send data to api
+                  useServices
+                    .RegisteFunction(userData)
+                    .then((response) => {
+                      window.alert(`${response.data.status}`);
+                    })
+                    .catch((err) => {
+                      window.alert(`${err.response.data.error}`);
+                    });
+                } else {
+                  setIsConfirmPasswordInvalid(true);
+                  setIsPasswordInvalid(true);
+                  setPasswordMatchInvalid(true);
+                }
+              } else {
+                setIsConfirmPasswordInvalid(true);
+              }
+            } else {
+              setIsPasswordInvalid(true);
+            }
+          } else {
+            setIsContactInvalid(true);
+          }
+        } else {
+          setIsUsernameInvalid(true);
+        }
+      } else {
+        setIsEmailInvalid(true);
+      }
+
+      return;
+    } else {
+      setIsfullnameInvalid(true);
+    }
   };
 
   //   Close the regsiter form
@@ -127,6 +142,13 @@ const Register = () => {
     setUsername("");
     setPassword("");
     setConfirmPassword("");
+    setIsConfirmPasswordInvalid(false);
+    setIsPasswordInvalid(false);
+    setIsContactInvalid(false);
+    setIsUsernameInvalid(false);
+    setIsEmailInvalid(false);
+    setIsfullnameInvalid(false);
+    setPasswordMatchInvalid(false);
   };
 
   return (
@@ -205,6 +227,9 @@ const Register = () => {
                   type="password"
                   invalid={isPasswordInvalid}
                 />
+                <FormFeedback valid={false}>
+                  Password did not match!
+                </FormFeedback>
               </FormGroup>
               <FormGroup>
                 <Input
@@ -218,9 +243,7 @@ const Register = () => {
                 />
               </FormGroup>
               {/* Register button */}
-              <Button onClick={registerUser} disabled={buttonDisabled}>
-                Sign up
-              </Button>
+              <Button onClick={registerUser}>Sign up</Button>
             </div>
           </div>
         </div>
