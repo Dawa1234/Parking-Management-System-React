@@ -26,13 +26,14 @@ const NewFloor = ({ category, vehicleId, setAllFloors }) => {
     if (floorNum === "") {
       setValidFloor(true);
     } else {
+      setValidFloor(false);
       floorServices
         .addFloorByCategory(vehicleId, floorNum)
         .then((response) => {
           setAllFloors(() => response.data);
         })
         .catch((err) => {
-          window.alert(err.response.data.Error);
+          setValidFloor(true);
         });
     }
   };
@@ -62,7 +63,7 @@ const NewFloor = ({ category, vehicleId, setAllFloors }) => {
                   onChange={(e) => handleFloor(e)}
                 />
                 <FormFeedback invalid={validFloorNum.toString()}>
-                  Bla Bla Bla Bla Bla Bla Bla Bla Bla
+                  Either floor already exists or invalid input!
                 </FormFeedback>
                 <FormText>
                   Do not enter floor number that already exists.

@@ -61,7 +61,7 @@ const DashboardPageNavigation = () => {
           </Link>
         </div>
         <div>
-          <Link id="nav-link" to="floor">
+          <Link id="nav-link" to="floor/">
             Floors
           </Link>
         </div>

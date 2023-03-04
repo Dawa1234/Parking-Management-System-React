@@ -16,7 +16,6 @@ const VehiclePage = () => {
         .getAllVehicle()
         .then((response) => {
           setAllVehicle(() => response.data.vehicle);
-          console.log(response.data.vehicle);
         })
         .catch((err) => console.log(err));
     }

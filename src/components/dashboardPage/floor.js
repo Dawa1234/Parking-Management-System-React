@@ -7,12 +7,14 @@ import NewFloor from "./newFloor";
 
 const FloorPage = () => {
   const { category } = useParams();
+  const [disable, setDisable] = useState(true);
   const [allFloors, setAllFloors] = useState([]);
   const [vehicleId, setVehicleId] = useState("");
 
   useEffect(() => {
     // if route is coming from the parameter
     if (category) {
+      setDisable(false);
       floorServices
         .getAllFloorByCategory(category)
         .then((response) => {
@@ -76,6 +78,7 @@ const FloorPage = () => {
                           onClick={() => deleteFloor(item._id)}
                           color="danger"
                           id="book-slot"
+                          disabled={disable}
                         >
                           Delete
                         </Button>
