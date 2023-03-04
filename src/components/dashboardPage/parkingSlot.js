@@ -123,6 +123,7 @@ const ParkingSlotPage = () => {
                       {/* Remove button */}
                       <td>
                         <Button
+                          color="primary"
                           id="book-slot"
                           disabled={!item.booked}
                           onClick={() => RemoveOccupiedSlot(item._id)}
@@ -133,6 +134,7 @@ const ParkingSlotPage = () => {
                       {/* Occupied button */}
                       <td>
                         <Button
+                          color="primary"
                           id="book-slot"
                           disabled={item.occupied}
                           onClick={() => handleOccupiedSlot(item._id)}

@@ -12,7 +12,7 @@ const DashboardRoutes = () => {
       <Routes>
         <Route path="" element={<DashboardPage />} />
         <Route path="floor" element={<FloorPage />} />
-        <Route path="floor/:id" element={<FloorPage />} />
+        <Route path="floor/:category" element={<FloorPage />} />
         <Route path="parkingSlot" element={<ParkingSlotPage />} />
         <Route path="parkingSlot/:id" element={<ParkingSlotPage />} />
         <Route path="vehicle" element={<VehiclePage />} />

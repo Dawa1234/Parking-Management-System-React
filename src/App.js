@@ -7,11 +7,6 @@ import Home from "./components/home";
 import HomeNavigation from "./components/navigations/homeNavigation";
 import BottomInformation from "./components/bottom_info/bottm_information";
 import NotFoundPage from "./components/notFoundPage";
-import DashboardPage from "./components/dashboardPage/dashboard";
-import DashboardPageNavigation from "./components/navigations/dashboardNavigation";
-import ParkingSlotPage from "./components/dashboardPage/parkingSlot";
-import FloorPage from "./components/dashboardPage/floor";
-import VehiclePage from "./components/dashboardPage/vehicle";
 import OurPolicies from "./components/ourPolices";
 import DashboardRoutes from "./components/dashboardPage/dashboardRoutes";
 
@@ -20,7 +15,6 @@ function App() {
     <>
       {/* Register Page */}
       <Register />
-
       {/* Content */}
       <Routes>
         {/* Home Page Navigation */}
