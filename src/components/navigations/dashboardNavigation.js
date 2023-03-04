@@ -78,7 +78,7 @@ const DashboardPageNavigation = () => {
         </div>
       </nav>
 
-      <Outlet />
+      <Outlet context={{ data: "Data" }} />
     </>
   );
 };

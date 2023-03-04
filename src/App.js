@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Register from "./components/authentication/registerpage";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import LoginContent from "./components/authentication/loginContent";
 import Home from "./components/home";
 import HomeNavigation from "./components/navigations/homeNavigation";
@@ -15,14 +15,6 @@ import VehiclePage from "./components/dashboardPage/vehicle";
 import OurPolicies from "./components/ourPolices";
 
 function App() {
-  // Register window
-  const registerWindow = (e) => {
-    e.preventDefault();
-    // Regsiter form
-    var registerForm = document.getElementById("register");
-    // Show register form
-    registerForm.style.display = "flex";
-  };
   return (
     <>
       {/* Register Page */}
@@ -37,7 +29,7 @@ function App() {
         </Route>
         {/* Dashboard Page Navigation */}
         <Route path="/dashboard" element={<DashboardPageNavigation />}>
-          <Route index element={<DashboardPage />} />
+          {/* <Route index element={<DashboardPage />} /> */}
           <Route path="" element={<DashboardPage />} />
           <Route path="parkingSlot" element={<ParkingSlotPage />} />
           <Route path="floor" element={<FloorPage />} />
