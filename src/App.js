@@ -13,6 +13,7 @@ import ParkingSlotPage from "./components/dashboardPage/parkingSlot";
 import FloorPage from "./components/dashboardPage/floor";
 import VehiclePage from "./components/dashboardPage/vehicle";
 import OurPolicies from "./components/ourPolices";
+import DashboardRoutes from "./components/dashboardPage/dashboardRoutes";
 
 function App() {
   return (
@@ -28,13 +29,8 @@ function App() {
           <Route path="/home" element={<Home />} />
         </Route>
         {/* Dashboard Page Navigation */}
-        <Route path="/dashboard" element={<DashboardPageNavigation />}>
-          {/* <Route index element={<DashboardPage />} /> */}
-          <Route path="" element={<DashboardPage />} />
-          <Route path="parkingSlot" element={<ParkingSlotPage />} />
-          <Route path="floor" element={<FloorPage />} />
-          <Route path="vehicle" element={<VehiclePage />} />
-        </Route>
+        <Route path="/dashboard/*" element={<DashboardRoutes />} />
+        {/* Our policeis */}
         <Route path="/ourPolicies" element={<OurPolicies />} />
         {/* If not route is found*/}
         <Route path="*" element={<NotFoundPage />} />

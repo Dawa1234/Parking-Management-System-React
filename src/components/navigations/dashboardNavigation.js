@@ -1,8 +1,9 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import "../../design/navigation_css/dashboardNavigation.css";
 
 const DashboardPageNavigation = () => {
+  const navigate = useNavigate();
   const showNavigationBar = () => {
     const navigationContent = document.getElementById("navigation-content");
     navigationContent.style.display = "flex";
@@ -13,7 +14,10 @@ const DashboardPageNavigation = () => {
     navigationContent.style.display = "none";
   };
 
-  const logOut = () => {};
+  const logOut = () => {
+    window.localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
     <>
       <div id="navigation-content">
@@ -36,7 +40,7 @@ const DashboardPageNavigation = () => {
           </Link>
         </div>
         <div>
-          <Link id="nav-link" to="">
+          <Link id="nav-link" to="" replace>
             Dashboard
           </Link>
         </div>
@@ -67,18 +71,16 @@ const DashboardPageNavigation = () => {
           </Link>
         </div>
         <div>
-          <Link id="nav-link" to="">
+          <Link id="nav-link" to="" replace>
             Dashboard
           </Link>
         </div>
         <div>
-          <Button color="danger" id="logout">
+          <Button onClick={logOut} color="danger" id="logout">
             Log out
           </Button>
         </div>
       </nav>
-
-      <Outlet context={{ data: "Data" }} />
     </>
   );
 };

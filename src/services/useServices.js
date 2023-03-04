@@ -1,10 +1,5 @@
 import axios from "axios";
 const baseUrl = "http://localhost:3001/user";
-// const config = {
-//     header: {
-//         Authorization : woind
-//     }
-// }
 
 // Login function
 const LoginFunction = async (username, password) => {

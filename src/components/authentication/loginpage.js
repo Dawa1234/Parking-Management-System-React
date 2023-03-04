@@ -23,6 +23,8 @@ const Login = () => {
     useServices
       .LoginFunction(UsernameController, PasswordController)
       .then((response) => {
+        window.localStorage.setItem("token", response.data.token);
+        console.log(response.data.token);
         // window.alert(`${response.data.status}`);
         navigate("/dashboard");
       })
