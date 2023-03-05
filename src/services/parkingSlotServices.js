@@ -1,5 +1,6 @@
 import axios from "axios";
 const baseUrl = "http://localhost:3001/parkingSlot";
+const transactionUrl = "http://localhost:3001/user/transaction";
 const baseUrlFloor = "http://localhost:3001/floor";
 const config = {
   headers: {
@@ -10,6 +11,11 @@ const config = {
 // get all parking Slots function
 const getAllParlingSlots = async () => {
   return await axios.get(baseUrl, config);
+};
+
+// book seleted slots
+const bookSlots = async (data) => {
+  return await axios.post(transactionUrl, data, config);
 };
 
 // Remove the occupied/booked slots function [Admin]
@@ -56,4 +62,5 @@ export default {
   getParkingSlotByFloor,
   addSlotInFloor,
   deleteSlot,
+  bookSlots,
 };

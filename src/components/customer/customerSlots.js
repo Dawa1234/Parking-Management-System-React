@@ -1,32 +1,25 @@
 import { useEffect, useState } from "react";
 import parkingSlotServices from "../../services/parkingSlotServices";
 import "../../design/dashboardPage/parkingSlot.css";
-import {
-  Button,
-  Card,
-  Collapse,
-  FormGroup,
-  Form,
-  Input,
-  Label,
-  Table,
-} from "reactstrap";
+import { Button, Collapse, FormGroup, Input, Label, Table } from "reactstrap";
 import { useParams } from "react-router-dom";
 import PaymentPage from "./payment";
 
 const CustomerParkingSlotPage = () => {
-  const { id, category } = useParams();
+  const { id } = useParams();
   const [allParkingSlots, setAllParkingSlots] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
-  let selectedSlots = [];
+  let [categoryVehicle, setCategoryVehicle] = useState("");
+  let [amount, setAmount] = useState("");
+  let [selectedSlots, setSelectedSlots1] = useState([]);
   //   For filter
   const toggleFilter = (e) => {
-    if (e.target.value == "Available Slots") {
+    if (e.target.value === "Available Slots") {
       setQuery(() => "false");
       return;
     }
-    if (e.target.value == "Show all") {
+    if (e.target.value === "Show all") {
       setQuery(() => "");
       return;
     }
@@ -57,13 +50,17 @@ const CustomerParkingSlotPage = () => {
   }, []);
 
   // select the selected slots by user
-  const bookSlot = (id) => {
+  const bookSlot = (id, vehicle) => {
     if (!selectedSlots.includes(id)) {
       selectedSlots.push(id);
+      console.log(selectedSlots);
+      setSelectedSlots1(() => selectedSlots);
+      setCategoryVehicle(() => vehicle);
     } else {
-      selectedSlots = selectedSlots.filter((item) => item != id);
+      selectedSlots = selectedSlots.filter((item) => item !== id);
+      setSelectedSlots1(() => selectedSlots);
     }
-    console.log(selectedSlots.length);
+    setAmount(() => `${selectedSlots.length * 15}`);
   };
 
   const style1 = {
@@ -80,9 +77,6 @@ const CustomerParkingSlotPage = () => {
   };
   const available = {
     background: "rgb(89, 240, 89)",
-  };
-  const selected = {
-    background: "blue",
   };
 
   return (
@@ -171,7 +165,9 @@ const CustomerParkingSlotPage = () => {
                       <td>
                         <FormGroup>
                           <Input
-                            onChange={() => bookSlot(item._id)}
+                            onChange={() =>
+                              bookSlot(item._id, item.vehicleCategory)
+                            }
                             type="checkbox"
                             disabled={item.booked || item.occupied}
                           />{" "}
@@ -185,12 +181,21 @@ const CustomerParkingSlotPage = () => {
             </tbody>
           </Table>
           <div id="add-floor">
-            <Button color="success" onClick={toggle}>
+            <Button
+              color="success"
+              onClick={toggle}
+              disabled={selectedSlots.length === 0 ? true : false}
+            >
               Book
             </Button>
           </div>
-          <Collapse isOpen={isOpen}>
-            <PaymentPage />
+          <Collapse isOpen={selectedSlots.length === 0 ? false : isOpen}>
+            <PaymentPage
+              selectedSlots={selectedSlots}
+              amount={amount}
+              category={categoryVehicle}
+              setAllParkingSlots={setAllParkingSlots}
+            />
           </Collapse>
         </div>
       </div>
