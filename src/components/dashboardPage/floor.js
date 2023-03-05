@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Table } from "reactstrap";
 import floorServices from "../../services/floorServices";
 import "../../design/dashboardPage/floor.css";
 import NewFloor from "./newFloor";
 
 const FloorPage = () => {
-  const { category } = useParams();
+  let { category } = useParams();
   const [disable, setDisable] = useState(true);
   const [allFloors, setAllFloors] = useState([]);
   const [vehicleId, setVehicleId] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     // if route is coming from the parameter
@@ -41,9 +42,15 @@ const FloorPage = () => {
       })
       .catch((err) => console.log(err));
   };
+  // show the add floor form
   const toggleButton = () => {
     let newFloorContent = document.getElementById("new-floor");
     newFloorContent.style.display = "flex";
+  };
+
+  const navigateToParkingSlot = (floorId) => {
+    // window.alert(floorId);
+    navigate(`/dashboard/parkingSlot/${floorId}`);
   };
 
   return (
@@ -62,6 +69,7 @@ const FloorPage = () => {
                 <th>Floor Num.</th>
                 <th>Total Parking Slot</th>
                 <th>Action</th>
+                <th>More</th>
               </tr>
             </thead>
             <tbody>
@@ -84,12 +92,24 @@ const FloorPage = () => {
                         </Button>
                       }
                     </td>
+                    <td>
+                      {/* Detail button */}
+                      {
+                        <Button
+                          onClick={() => navigateToParkingSlot(item._id)}
+                          color="primary"
+                          id="book-slot"
+                        >
+                          Detail
+                        </Button>
+                      }
+                    </td>
                   </tr>
                 );
               })}
             </tbody>
           </Table>
-          {category === undefined ? (
+          {category === undefined || category === "" ? (
             <></>
           ) : (
             // New Floor button

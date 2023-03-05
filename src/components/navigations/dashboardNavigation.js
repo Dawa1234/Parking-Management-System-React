@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import "../../design/navigation_css/dashboardNavigation.css";
 
@@ -61,7 +61,7 @@ const DashboardPageNavigation = () => {
           </Link>
         </div>
         <div>
-          <Link id="nav-link" to="floor/">
+          <Link id="nav-link" to="floor">
             Floors
           </Link>
         </div>

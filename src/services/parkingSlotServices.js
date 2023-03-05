@@ -1,5 +1,6 @@
 import axios from "axios";
 const baseUrl = "http://localhost:3001/parkingSlot";
+const baseUrlFloor = "http://localhost:3001/floor";
 const config = {
   headers: {
     Authorization: `bearer ${window.localStorage.getItem("token")}`,
@@ -26,4 +27,14 @@ const occupySlot = async (id) => {
   return await axios.put(`${baseUrl}/occupy`, data, config);
 };
 
-export default { getAllParlingSlots, removeOccupiedSlot, occupySlot };
+// get the parking Slots from floor [Admin]
+const getParkingSlotByFloor = async (floorId) => {
+  return await axios.get(`${baseUrlFloor}/${floorId}/parkingSlots`, config);
+};
+
+export default {
+  getAllParlingSlots,
+  removeOccupiedSlot,
+  occupySlot,
+  getParkingSlotByFloor,
+};

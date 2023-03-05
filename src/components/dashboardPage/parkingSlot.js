@@ -3,6 +3,7 @@ import parkingSlotServices from "../../services/parkingSlotServices";
 import "../../design/dashboardPage/parkingSlot.css";
 import { Button, Table } from "reactstrap";
 import { useParams } from "react-router-dom";
+import NewSlot from "./newSlot";
 
 const ParkingSlotPage = () => {
   const { id } = useParams();
@@ -11,6 +12,12 @@ const ParkingSlotPage = () => {
   useEffect(() => {
     // if route is coming from the parameter
     if (id) {
+      parkingSlotServices
+        .getParkingSlotByFloor(id)
+        .then((response) => {
+          setAllParkingSlots(() => response.data.parkingSlots);
+        })
+        .catch((err) => console.log(err));
     } else {
       parkingSlotServices
         .getAllParlingSlots()
@@ -55,6 +62,11 @@ const ParkingSlotPage = () => {
         setAllParkingSlots(() => updateSlots);
       })
       .catch((err) => console.log(err));
+  };
+
+  const toggleButton = () => {
+    let newFloorContent = document.getElementById("new-slot");
+    newFloorContent.style.display = "flex";
   };
 
   return (
@@ -148,6 +160,15 @@ const ParkingSlotPage = () => {
               )}
             </tbody>
           </Table>
+          {/* New slot button */}
+          <div id="add-floor">
+            <Button onClick={toggleButton} color="success">
+              New Slot
+            </Button>
+          </div>
+          <div>
+            <NewSlot />
+          </div>
         </div>
       </div>
     </>
