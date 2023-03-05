@@ -23,10 +23,14 @@ const Login = () => {
     useServices
       .LoginFunction(UsernameController, PasswordController)
       .then((response) => {
-        window.localStorage.setItem("token", response.data.token);
-        console.log(response.data.token);
-        // window.alert(`${response.data.status}`);
-        navigate("/dashboard");
+        console.log(response.data);
+        if (response.data.role === "Admin") {
+          window.localStorage.setItem("token", response.data.token);
+          navigate("/dashboard");
+        } else {
+          window.localStorage.setItem("token", response.data.token);
+          navigate("/user/dashboard");
+        }
       })
       .catch((err) => {
         // Set error message

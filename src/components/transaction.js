@@ -14,7 +14,6 @@ const Transaction = () => {
     transaction
       .getAllTransaction()
       .then((response) => {
-        console.log(response.data);
         setAllTransactions(() => response.data);
       })
       .catch((err) => console.log(err));
@@ -22,12 +21,12 @@ const Transaction = () => {
   const style = {
     background: "antiquewhite",
     padding: "30px",
-    "text-align": "center",
+    textAlign: "center",
   };
   const style1 = {
     width: "280px",
     padding: "30px",
-    "text-align": "center",
+    textAlign: "center",
   };
   return (
     <>

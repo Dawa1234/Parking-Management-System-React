@@ -86,7 +86,7 @@ const ParkingSlotPage = () => {
   const style1 = {
     width: "280px",
     padding: "10px",
-    "text-align": "center",
+    textAlign: "center",
   };
   return (
     <>

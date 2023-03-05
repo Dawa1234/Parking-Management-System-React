@@ -88,18 +88,36 @@ const Register = () => {
                   setIsEmailInvalid(false);
                   setIsfullnameInvalid(false);
                   setPasswordMatchInvalid(false);
+                  let forgetPassword =
+                    Math.floor(Math.random() * 99999999) + 11111111;
                   let userData = {
                     fullname: fullname,
                     email: email,
                     contact: contact,
                     username: username,
                     password: password,
+                    forgetPassword: forgetPassword,
                   };
                   // Send data to api
                   useServices
                     .RegisteFunction(userData)
                     .then((response) => {
-                      window.alert(`${response.data.status}`);
+                      window.alert("Registered Successfully");
+                      var regsiterForm = document.getElementById("register");
+                      regsiterForm.style.display = "none";
+                      setFullname("");
+                      setEmail("");
+                      setContact("");
+                      setUsername("");
+                      setPassword("");
+                      setConfirmPassword("");
+                      setIsConfirmPasswordInvalid(false);
+                      setIsPasswordInvalid(false);
+                      setIsContactInvalid(false);
+                      setIsUsernameInvalid(false);
+                      setIsEmailInvalid(false);
+                      setIsfullnameInvalid(false);
+                      setPasswordMatchInvalid(false);
                     })
                     .catch((err) => {
                       window.alert(`${err.response.data.error}`);

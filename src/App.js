@@ -9,6 +9,7 @@ import BottomInformation from "./components/bottom_info/bottm_information";
 import NotFoundPage from "./components/notFoundPage";
 import OurPolicies from "./components/ourPolices";
 import DashboardRoutes from "./components/dashboardPage/dashboardRoutes";
+import CustomerRoute from "./components/customer/dashboardRoute";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         </Route>
         {/* Dashboard Page Navigation */}
         <Route path="/dashboard/*" element={<DashboardRoutes />} />
+        <Route path="/user/dashboard/*" element={<CustomerRoute />} />
         {/* Our policeis */}
         <Route path="/ourPolicies" element={<OurPolicies />} />
         {/* If not route is found*/}

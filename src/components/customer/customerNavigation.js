@@ -1,8 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
-import "../../design/navigation_css/dashboardNavigation.css";
+import CustomerDashboard from "./customerDashboard";
 
-const DashboardPageNavigation = () => {
+const CustomerNavigation = () => {
   const navigate = useNavigate();
   const showNavigationBar = () => {
     const navigationContent = document.getElementById("navigation-content");
@@ -98,7 +98,6 @@ const DashboardPageNavigation = () => {
             onClick={() => hideNavigationBar()}
             id="nav-link"
             to="transaction"
-            replace
           >
             Transactions
           </Link>
@@ -113,4 +112,4 @@ const DashboardPageNavigation = () => {
   );
 };
 
-export default DashboardPageNavigation;
+export default CustomerNavigation;
