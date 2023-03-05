@@ -1,5 +1,5 @@
 #new-slot {
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -19,7 +19,7 @@
 }
 #new-slot .form div {
   padding: 0px 20px 0px 20px;
-  background-color: red;
+  /* background-color: red; */
 }
 #new-slot .form :nth-child(4) {
   text-align: end;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Table } from "reactstrap";
+import { Button, Card, CardBody, Collapse, Table } from "reactstrap";
 import floorServices from "../../services/floorServices";
 import "../../design/dashboardPage/floor.css";
 import NewFloor from "./newFloor";
@@ -11,6 +11,9 @@ const FloorPage = () => {
   const [allFloors, setAllFloors] = useState([]);
   const [vehicleId, setVehicleId] = useState("");
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     // if route is coming from the parameter
@@ -42,15 +45,10 @@ const FloorPage = () => {
       })
       .catch((err) => console.log(err));
   };
-  // show the add floor form
-  const toggleButton = () => {
-    let newFloorContent = document.getElementById("new-floor");
-    newFloorContent.style.display = "flex";
-  };
 
   const navigateToParkingSlot = (floorId) => {
-    // window.alert(floorId);
-    navigate(`/dashboard/parkingSlot/${floorId}`);
+    // window.alert(category);
+    navigate(`/dashboard/parkingSlot/${floorId}/${category}`);
   };
 
   return (
@@ -114,19 +112,24 @@ const FloorPage = () => {
           ) : (
             // New Floor button
             <div id="add-floor">
-              <Button onClick={toggleButton} color="success">
+              <Button onClick={toggle} color="success">
                 New Floor
               </Button>
             </div>
           )}
           {/* Add floor field */}
-          <div>
-            <NewFloor
-              category={category}
-              vehicleId={vehicleId}
-              setAllFloors={setAllFloors}
-            />
-          </div>
+          <Collapse isOpen={isOpen}>
+            <Card>
+              {/* asdklaskdj */}
+              <div>
+                <NewFloor
+                  category={category}
+                  vehicleId={vehicleId}
+                  setAllFloors={setAllFloors}
+                />
+              </div>
+            </Card>
+          </Collapse>
         </div>
       </div>
     </>

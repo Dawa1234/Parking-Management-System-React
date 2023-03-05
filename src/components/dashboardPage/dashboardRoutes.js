@@ -14,7 +14,7 @@ const DashboardRoutes = () => {
         <Route path="floor" element={<FloorPage />} />
         <Route path="floor/:category" element={<FloorPage />} />
         <Route path="parkingSlot" element={<ParkingSlotPage />} />
-        <Route path="parkingSlot/:id" element={<ParkingSlotPage />} />
+        <Route path="parkingSlot/:id/:category" element={<ParkingSlotPage />} />
         <Route path="vehicle" element={<VehiclePage />} />
       </Routes>
     </>

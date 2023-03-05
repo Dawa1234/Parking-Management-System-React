@@ -50,7 +50,6 @@ const NewFloor = ({ category, vehicleId, setAllFloors }) => {
           {/* Heading */}
           <div>
             <h3>Add New Floor</h3>
-            <span onClick={toggleButton}>X</span>
           </div>
           {/* Body */}
           <div>

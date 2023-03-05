@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import parkingSlotServices from "../../services/parkingSlotServices";
 import "../../design/dashboardPage/parkingSlot.css";
-import { Button, Table } from "reactstrap";
+import { Button, Card, Collapse, Table } from "reactstrap";
 import { useParams } from "react-router-dom";
 import NewSlot from "./newSlot";
 
 const ParkingSlotPage = () => {
-  const { id } = useParams();
+  const { id, category } = useParams();
   const [allParkingSlots, setAllParkingSlots] = useState([]);
+  const [disable, setDisable] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
   // get and set all the data from here
   useEffect(() => {
     // if route is coming from the parameter
     if (id) {
+      if (category === undefined || category === "undefined") {
+        setDisable(true);
+      }
       parkingSlotServices
         .getParkingSlotByFloor(id)
         .then((response) => {
@@ -19,6 +26,7 @@ const ParkingSlotPage = () => {
         })
         .catch((err) => console.log(err));
     } else {
+      setDisable(true);
       parkingSlotServices
         .getAllParlingSlots()
         .then((response) => {
@@ -69,6 +77,12 @@ const ParkingSlotPage = () => {
     newFloorContent.style.display = "flex";
   };
 
+  const deleteSlot = (slotId) => {
+    parkingSlotServices.deleteSlot(id, slotId).then((response) => {
+      setAllParkingSlots(() => response.data);
+    });
+  };
+
   return (
     <>
       {/* Heading Part */}
@@ -86,13 +100,13 @@ const ParkingSlotPage = () => {
               <tr>
                 <th>P.Id</th>
                 <th>Slot</th>
-                <th>Floor Num.</th>
                 <th>Vehicle Category</th>
                 <th>Booked Status</th>
                 <th>Occupied Status</th>
                 <th>Booked By</th>
                 <th>Action</th>
                 <th>Occupy</th>
+                <th>Danger</th>
               </tr>
             </thead>
             {/* Table body */}
@@ -119,7 +133,7 @@ const ParkingSlotPage = () => {
                     <tr key={item._id}>
                       <th scope="row">{item._id}</th>
                       <td>{item.slot}</td>
-                      <td>{item.floorId}</td>
+
                       <td>{item.vehicleCategory}</td>
                       <td>{item.booked ? `${"Booked"}` : "Available"}</td>
                       <td>{item.occupied ? "Occupied" : "Not occupied"}</td>
@@ -154,6 +168,16 @@ const ParkingSlotPage = () => {
                           Occupy
                         </Button>
                       </td>
+                      <td>
+                        <Button
+                          color="danger"
+                          id="book-slot"
+                          disabled={disable ? true : item.occupied}
+                          onClick={() => deleteSlot(item._id)}
+                        >
+                          Delete
+                        </Button>
+                      </td>
                     </tr>
                   );
                 })
@@ -161,14 +185,27 @@ const ParkingSlotPage = () => {
             </tbody>
           </Table>
           {/* New slot button */}
-          <div id="add-floor">
-            <Button onClick={toggleButton} color="success">
-              New Slot
-            </Button>
-          </div>
-          <div>
-            <NewSlot />
-          </div>
+          {category === undefined || category === "undefined" ? (
+            ""
+          ) : (
+            <div id="add-floor">
+              <Button onClick={toggle} color="success">
+                New Slot
+              </Button>
+            </div>
+          )}
+          {/* add floor content */}
+          <Collapse isOpen={isOpen}>
+            <Card>
+              <div>
+                <NewSlot
+                  floorId={id}
+                  category={category}
+                  setAllParkingSlots={setAllParkingSlots}
+                />
+              </div>
+            </Card>
+          </Collapse>
         </div>
       </div>
     </>

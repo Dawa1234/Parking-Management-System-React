@@ -25,22 +25,26 @@ const DashboardPageNavigation = () => {
           X
         </div>
         <div>
-          <Link id="nav-link" to="parkingSlot">
-            Parking Slot
-          </Link>
-        </div>
-        <div>
-          <Link id="nav-link" to="floor">
-            Floors
-          </Link>
-        </div>
-        <div>
-          <Link id="nav-link" to="vehicle">
+          <Link onClick={() => hideNavigationBar()} id="nav-link" to="vehicle">
             Vehicle
           </Link>
         </div>
         <div>
-          <Link id="nav-link" to="" replace>
+          <Link onClick={() => hideNavigationBar()} id="nav-link" to="floor">
+            Floors
+          </Link>
+        </div>
+        <div>
+          <Link
+            onClick={() => hideNavigationBar()}
+            id="nav-link"
+            to="parkingSlot"
+          >
+            Parking Slot
+          </Link>
+        </div>
+        <div>
+          <Link onClick={() => hideNavigationBar()} id="nav-link" to="" replace>
             Dashboard
           </Link>
         </div>
@@ -56,22 +60,26 @@ const DashboardPageNavigation = () => {
           <div id="logo-img"></div>
         </div>
         <div>
-          <Link id="nav-link" to="parkingSlot">
-            Parking Slot
-          </Link>
-        </div>
-        <div>
-          <Link id="nav-link" to="floor">
-            Floors
-          </Link>
-        </div>
-        <div>
-          <Link id="nav-link" to="vehicle">
+          <Link onClick={() => hideNavigationBar()} id="nav-link" to="vehicle">
             Vehicle
           </Link>
         </div>
         <div>
-          <Link id="nav-link" to="" replace>
+          <Link onClick={() => hideNavigationBar()} id="nav-link" to="floor">
+            Floors
+          </Link>
+        </div>
+        <div>
+          <Link
+            onClick={() => hideNavigationBar()}
+            id="nav-link"
+            to="parkingSlot"
+          >
+            Parking Slot
+          </Link>
+        </div>
+        <div>
+          <Link onClick={() => hideNavigationBar()} id="nav-link" to="" replace>
             Dashboard
           </Link>
         </div>

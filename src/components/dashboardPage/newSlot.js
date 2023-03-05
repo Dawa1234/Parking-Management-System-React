@@ -7,33 +7,50 @@ import {
   Input,
   Label,
   FormText,
+  Row,
   Col,
 } from "reactstrap";
-import "../../design/dashboardPage/newFloor.css";
+import "../../design/dashboardPage/newSlot.css";
 import floorServices from "../../services/floorServices";
+import parkingSlotServices from "../../services/parkingSlotServices";
 
-const NewSlot = ({ category, vehicleId, setAllFloors }) => {
-  const [validFloorNum, setValidFloor] = useState(false);
+const NewSlot = ({ floorId, category, setAllParkingSlots }) => {
+  const [validrow, setValidrow] = useState(false);
+  const [validcolumn, setValidcolumn] = useState(false);
+  const [row, setRow] = useState("");
+  const [column, setColumn] = useState("");
   const [floorNum, setFloorNum] = useState("");
 
-  //   Input value
-  const handleFloor = (e) => {
-    setFloorNum(e.target.value);
-  };
-
   //  Add floor to the vehicle category
-  const addFloor = () => {
-    if (floorNum === "") {
-      setValidFloor(true);
+  const addSlot = () => {
+    if (row === "") {
+      setValidrow(true);
+    } else if (column === "") {
+      setValidrow(false);
+      setValidcolumn(true);
     } else {
-      setValidFloor(false);
-      floorServices
-        .addFloorByCategory(vehicleId, floorNum)
+      setValidrow(false);
+      setValidcolumn(false);
+      let slot = (row + column).toUpperCase();
+      let data = {
+        floorId: floorId,
+        slot: slot,
+        row: row.toUpperCase(),
+        column: column.toUpperCase(),
+        booked: false,
+        occupied: false,
+        vehicleCategory: category,
+      };
+      // send request
+      parkingSlotServices
+        .addSlotInFloor(floorId, data)
         .then((response) => {
-          setAllFloors(() => response.data);
+          console.log(response);
+          setAllParkingSlots(() => response.data.parkingSlots);
         })
         .catch((err) => {
-          setValidFloor(true);
+          setValidrow(true);
+          setValidcolumn(true);
         });
     }
   };
@@ -50,41 +67,67 @@ const NewSlot = ({ category, vehicleId, setAllFloors }) => {
           {/* Heading */}
           <div>
             <h3>Add New Slot</h3>
-            <span onClick={toggleButton}>X</span>
           </div>
           {/* Body */}
           <div>
             <Form>
-              <FormGroup>
-                <Label for="floor">Floor Number</Label>
-                <Input
-                  invalid={validFloorNum}
-                  value={floorNum}
-                  onChange={(e) => handleFloor(e)}
-                />
-                <FormFeedback invalid={validFloorNum.toString()}>
-                  Either floor already exists or invalid input!
-                </FormFeedback>
-                <FormText>
-                  Do not enter floor number that already exists.
-                </FormText>
-              </FormGroup>
+              {/* first row */}
+              <Row>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="rwo-num">Row</Label>
+                    <Input
+                      value={row}
+                      onChange={(e) => setRow(() => e.target.value)}
+                      id="row"
+                      placeholder="Row (Eg: R-1)"
+                      type="text"
+                      invalid={validrow}
+                    />
+                    <FormFeedback invalid={`${validrow.toString()}`}>
+                      Either slot is empty or slot already exist.
+                    </FormFeedback>
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="column-num">Column</Label>
+                    <Input
+                      value={column}
+                      onChange={(e) => setColumn(() => e.target.value)}
+                      id="column"
+                      name="column"
+                      placeholder="Column (Eg: C1)"
+                      type="text"
+                      invalid={validcolumn}
+                    />
+                  </FormGroup>
+                  <FormFeedback invalid={`${validcolumn.toString()}`}>
+                    Either slot is empty or slot already exist.
+                  </FormFeedback>
+                </Col>
+              </Row>
             </Form>
           </div>
           <div>
-            <Form>
-              <FormGroup>
-                <Label for="vehicle">Vehicle Category</Label>
-                <Input valid value={category} disabled />
-                <FormText>
-                  Go to the vehicle page and click detail specifically to change
-                  this value.
-                </FormText>
-              </FormGroup>
-            </Form>
+            {/* second row */}
+            <Row>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="booked">Booked</Label>
+                  <Input value="Available" id="booked" type="text" disabled />
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="occupied">Ocupied</Label>
+                  <Input value="Available" id="occupied" type="text" disabled />
+                </FormGroup>
+              </Col>
+            </Row>
           </div>
           <div>
-            <Button onClick={addFloor} id="book-slot" color="success">
+            <Button onClick={addSlot} id="book-slot" color="success">
               Add
             </Button>
           </div>

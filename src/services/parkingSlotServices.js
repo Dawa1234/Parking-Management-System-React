@@ -32,9 +32,28 @@ const getParkingSlotByFloor = async (floorId) => {
   return await axios.get(`${baseUrlFloor}/${floorId}/parkingSlots`, config);
 };
 
+// add a parking Slots in a floor [Admin]
+const addSlotInFloor = async (floorId, data) => {
+  return await axios.put(
+    `${baseUrlFloor}/${floorId}/parkingSlots`,
+    data,
+    config
+  );
+};
+
+// delete a parking Slots  [Admin]
+const deleteSlot = async (floorId, slotId) => {
+  return await axios.delete(
+    `${baseUrlFloor}/${floorId}/parkingSlots/${slotId}`,
+    config
+  );
+};
+
 export default {
   getAllParlingSlots,
   removeOccupiedSlot,
   occupySlot,
   getParkingSlotByFloor,
+  addSlotInFloor,
+  deleteSlot,
 };
