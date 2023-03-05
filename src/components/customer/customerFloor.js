@@ -35,19 +35,9 @@ const CustomerFloorPage = () => {
     }
   }, []);
 
-  // delete floor
-  const deleteFloor = (floorId) => {
-    floorServices
-      .deleteFloor(vehicleId, floorId)
-      .then((response) => {
-        setAllFloors(response.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
   const navigateToParkingSlot = (floorId) => {
     // window.alert(category);
-    navigate(`/dashboard/parkingSlot/${floorId}/${category}`);
+    navigate(`/user/dashboard/parkingSlot/${floorId}/${category}`);
   };
 
   return (

@@ -1,0 +1,10 @@
+.payment-conent {
+  background-color: rgb(80, 80, 80);
+  height: 400px;
+  margin: 40px;
+  color: white;
+}
+
+.payment-form {
+  padding: 0px 10px 0px 10px;
+}
