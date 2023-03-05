@@ -44,6 +44,16 @@ const DashboardPageNavigation = () => {
           </Link>
         </div>
         <div>
+          <Link
+            onClick={() => hideNavigationBar()}
+            id="nav-link"
+            to="transaction"
+            replace
+          >
+            Transaction
+          </Link>
+        </div>
+        <div>
           <Link onClick={() => hideNavigationBar()} id="nav-link" to="" replace>
             Dashboard
           </Link>
@@ -79,8 +89,23 @@ const DashboardPageNavigation = () => {
           </Link>
         </div>
         <div>
-          <Link onClick={() => hideNavigationBar()} id="nav-link" to="" replace>
+          <Link
+            onClick={() => hideNavigationBar()}
+            id="nav-link"
+            to=""
+            replace={true}
+          >
             Dashboard
+          </Link>
+        </div>
+        <div>
+          <Link
+            onClick={() => hideNavigationBar()}
+            id="nav-link"
+            to="transaction"
+            replace
+          >
+            Transactions
           </Link>
         </div>
         <div>

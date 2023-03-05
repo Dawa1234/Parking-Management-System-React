@@ -1,0 +1,25 @@
+.transcation-content {
+  display: flex;
+  padding: 50px 0px 0px 0px;
+  justify-content: center;
+  width: 100%;
+  height: 750px;
+}
+
+/* Table content */
+.parkingSlot-table {
+  /* background-color: red; */
+  width: 100%;
+  overflow: scroll;
+  text-align: center;
+}
+
+.transcation-content span {
+  display: inline-block;
+  padding-top: 10px;
+  height: 30px;
+  width: 30px;
+  background-image: url(../images/khalti.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import parkingSlotServices from "../../services/parkingSlotServices";
 import "../../design/dashboardPage/parkingSlot.css";
-import { Button, Card, Collapse, Table } from "reactstrap";
+import { Button, Card, Collapse, Input, Label, Table } from "reactstrap";
 import { useParams } from "react-router-dom";
 import NewSlot from "./newSlot";
 
@@ -11,6 +11,11 @@ const ParkingSlotPage = () => {
   const [disable, setDisable] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const [query, setQuery] = useState("");
+
+  const filteredItem = allParkingSlots.filter((item) => {
+    return item.slot.toLowerCase().includes(query.toLowerCase());
+  });
   const toggle = () => setIsOpen(!isOpen);
   // get and set all the data from here
   useEffect(() => {
@@ -72,23 +77,31 @@ const ParkingSlotPage = () => {
       .catch((err) => console.log(err));
   };
 
-  const toggleButton = () => {
-    let newFloorContent = document.getElementById("new-slot");
-    newFloorContent.style.display = "flex";
-  };
-
+  // delete slot
   const deleteSlot = (slotId) => {
     parkingSlotServices.deleteSlot(id, slotId).then((response) => {
       setAllParkingSlots(() => response.data);
     });
   };
-
+  const style1 = {
+    width: "280px",
+    padding: "10px",
+    "text-align": "center",
+  };
   return (
     <>
       {/* Heading Part */}
       <div className="parkingSlot-header">
         <h1>Total Parking Slot</h1>
         <h6>Overall No. of Slots: {allParkingSlots.length}</h6>
+      </div>
+      <div style={style1}>
+        <Label>Search Box</Label>
+        <Input
+          value={query}
+          onChange={(e) => setQuery(() => e.target.value)}
+          placeholder="Search by slot code"
+        />
       </div>
       {/* Main content */}
       <div className="parkingSlot-content">
@@ -128,7 +141,7 @@ const ParkingSlotPage = () => {
                 </>
               ) : (
                 // If slots
-                allParkingSlots.map((item) => {
+                filteredItem.map((item) => {
                   return (
                     <tr key={item._id}>
                       <th scope="row">{item._id}</th>

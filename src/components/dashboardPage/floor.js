@@ -57,6 +57,7 @@ const FloorPage = () => {
       <div className="parkingSlot-header">
         <h1>Floor Status</h1>
         <h6>Overall Floors: {allFloors.length}</h6>
+        <h6>{category ? `Vehicle Category: ${category}` : ""}</h6>
       </div>
       <div className="parkingSlot-content">
         <div className="parkingSlot-table">

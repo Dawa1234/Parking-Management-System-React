@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import DashboardPageNavigation from "../navigations/dashboardNavigation";
+import Transaction from "../transaction";
 import DashboardPage from "./dashboard";
 import FloorPage from "./floor";
 import ParkingSlotPage from "./parkingSlot";
@@ -16,6 +17,7 @@ const DashboardRoutes = () => {
         <Route path="parkingSlot" element={<ParkingSlotPage />} />
         <Route path="parkingSlot/:id/:category" element={<ParkingSlotPage />} />
         <Route path="vehicle" element={<VehiclePage />} />
+        <Route path="transaction" element={<Transaction />} />
       </Routes>
     </>
   );
