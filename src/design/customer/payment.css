@@ -21,3 +21,9 @@
 .payment-conent Button {
   background-color: rebeccapurple;
 }
+
+@media (max-width: 767px) {
+  .payment-conent {
+    height: 580px;
+  }
+}

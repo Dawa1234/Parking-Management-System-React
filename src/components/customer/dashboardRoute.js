@@ -7,6 +7,7 @@ import CustomerNavigation from "./customerNavigation";
 import CustomerParkingSlotPage from "./customerSlots";
 import CustomerTransaction from "./customerTransaction";
 import CustomerVehiclePage from "./customerVehicle";
+import CustomerProfile from "./customerProfile";
 
 const CustomerRoute = () => {
   return (
@@ -24,7 +25,7 @@ const CustomerRoute = () => {
         />
         <Route path="transaction" element={<CustomerTransaction />} />
         <Route path="bookedslot" element={<CustomerCancelSlot />} />
-        <Route path="profile" element={<CustomerCancelSlot />} />
+        <Route path="profile" element={<CustomerProfile />} />
       </Routes>
     </>
   );

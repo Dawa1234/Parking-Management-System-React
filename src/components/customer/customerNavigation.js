@@ -67,11 +67,7 @@ const CustomerNavigation = () => {
           </Link>
         </div>
         <div>
-          <Link
-            onClick={() => hideNavigationBar()}
-            id="nav-link"
-            to="transaction"
-          >
+          <Link onClick={() => hideNavigationBar()} id="nav-link" to="profile">
             Profile
           </Link>
         </div>
@@ -129,11 +125,7 @@ const CustomerNavigation = () => {
           </Link>
         </div>
         <div>
-          <Link
-            onClick={() => hideNavigationBar()}
-            id="nav-link"
-            to="transaction"
-          >
+          <Link onClick={() => hideNavigationBar()} id="nav-link" to="profile">
             Profile
           </Link>
         </div>
