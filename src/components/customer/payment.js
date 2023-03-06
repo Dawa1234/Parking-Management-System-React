@@ -55,7 +55,7 @@ const PaymentPage = ({
       .then((response) => {
         // console.log(response.data.parkingSlots);
         // setAllParkingSlots(() => response.data.parkingSlots);
-        navigate("/user/dashboard");
+        navigate("/user/dashboard/bookedslot");
       })
       .catch((err) => console.log(err));
   };

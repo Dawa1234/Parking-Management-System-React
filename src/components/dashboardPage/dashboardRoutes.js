@@ -1,4 +1,5 @@
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import DashboardPageNavigation from "../navigations/dashboardNavigation";
 import Transaction from "../transaction";
 import DashboardPage from "./dashboard";
@@ -7,6 +8,13 @@ import ParkingSlotPage from "./parkingSlot";
 import VehiclePage from "./vehicle";
 
 const DashboardRoutes = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    var admin = JSON.parse(window.localStorage.getItem("admin"));
+    if (admin === null) {
+      navigate("/");
+    }
+  }, []);
   return (
     <>
       <DashboardPageNavigation />

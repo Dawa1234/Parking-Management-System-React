@@ -1,8 +1,24 @@
-import { Link, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import "../../design/navigation_css/homeNavigation.css";
 
 const HomeNavigation = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    var user = JSON.parse(window.localStorage.getItem("user"));
+    var admin = JSON.parse(window.localStorage.getItem("admin"));
+    if (user !== {} || admin !== {}) {
+      if (user) {
+        navigate("/user/dashboard");
+        return;
+      }
+      if (admin) {
+        navigate("/dashboard");
+        return;
+      }
+    }
+  }, []);
   const registerWindow = (e) => {
     e.preventDefault();
     // Regsiter form

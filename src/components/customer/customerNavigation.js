@@ -15,6 +15,11 @@ const CustomerNavigation = () => {
 
   const logOut = () => {
     window.localStorage.removeItem("token");
+    window.localStorage.removeItem("user");
+    window.localStorage.removeItem("admin");
+    console.log(window.localStorage.getItem("token"));
+    console.log(window.localStorage.getItem("user"));
+    console.log(window.localStorage.getItem("admin"));
     navigate("/");
   };
   return (
