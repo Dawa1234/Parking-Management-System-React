@@ -1,6 +1,6 @@
 import axios from "axios";
 const baseUrl = "http://localhost:3001/parkingSlot";
-const transactionUrl = "http://localhost:3001/user/transaction";
+const transactionUrl = "http://localhost:3001/user/transaction/booking";
 const baseUrlFloor = "http://localhost:3001/floor";
 const config = {
   headers: {
@@ -13,7 +13,7 @@ const getAllParlingSlots = async () => {
   return await axios.get(baseUrl, config);
 };
 
-// book seleted slots
+// paymen and book selected slots
 const bookSlots = async (data) => {
   return await axios.post(transactionUrl, data, config);
 };

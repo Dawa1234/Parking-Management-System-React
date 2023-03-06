@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FormGroup, Input, Form, Label, Row, Col, Button } from "reactstrap";
 import "../../design/customer/payment.css";
 import parkingSlotServices from "../../services/parkingSlotServices";
@@ -15,6 +16,7 @@ const PaymentPage = ({
   const [mpin, setMpin] = useState("");
   const [validkhalti, setValidKhalti] = useState(false);
   const [validmpin, setValidMpin] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     var user = window.localStorage.getItem("user");
@@ -47,10 +49,12 @@ const PaymentPage = ({
       selectedSlots: selectedSlots,
       floorId: floorid,
     };
+    // payment of the user
     parkingSlotServices
       .bookSlots(data)
       .then((response) => {
-        console.log(response);
+        // setAllParkingSlots(() => response.data);
+        navigate("/user/dashboard");
       })
       .catch((err) => console.log(err));
   };

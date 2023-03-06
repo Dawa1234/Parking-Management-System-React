@@ -1,6 +1,5 @@
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
-import CustomerDashboard from "./customerDashboard";
 
 const CustomerNavigation = () => {
   const navigate = useNavigate();
@@ -58,6 +57,24 @@ const CustomerNavigation = () => {
             Dashboard
           </Link>
         </div>
+        <div>
+          <Link
+            onClick={() => hideNavigationBar()}
+            id="nav-link"
+            to="bookedslot"
+          >
+            Booked Slot
+          </Link>
+        </div>
+        <div>
+          <Link
+            onClick={() => hideNavigationBar()}
+            id="nav-link"
+            to="transaction"
+          >
+            Profile
+          </Link>
+        </div>
       </div>
       {/* Navigation bar */}
       <nav className="dashboardPageNavigation">
@@ -100,6 +117,24 @@ const CustomerNavigation = () => {
             to="transaction"
           >
             Transactions
+          </Link>
+        </div>
+        <div>
+          <Link
+            onClick={() => hideNavigationBar()}
+            id="nav-link"
+            to="bookedslot"
+          >
+            Booked Slot
+          </Link>
+        </div>
+        <div>
+          <Link
+            onClick={() => hideNavigationBar()}
+            id="nav-link"
+            to="transaction"
+          >
+            Profile
           </Link>
         </div>
         <div>

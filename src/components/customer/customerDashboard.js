@@ -5,7 +5,6 @@ const CustomerDashboard = () => {
   useEffect(() => {
     var user = window.localStorage.getItem("user");
     setUserData(() => JSON.parse(user));
-    // console.log(UserData.staticProperty.fullname);
   }, []);
 
   return (
