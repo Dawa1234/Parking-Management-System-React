@@ -1,28 +1,21 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Card, CardBody, Collapse, Table } from "reactstrap";
+import { Button, Table } from "reactstrap";
 import floorServices from "../../services/floorServices";
 import "../../design/dashboardPage/floor.css";
 
 const CustomerFloorPage = () => {
   let { category } = useParams();
-  const [disable, setDisable] = useState(true);
   const [allFloors, setAllFloors] = useState([]);
-  const [vehicleId, setVehicleId] = useState("");
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     // if route is coming from the parameter
     if (category) {
-      setDisable(false);
       floorServices
         .getAllFloorByCategory(category)
         .then((response) => {
           setAllFloors(() => response.data[0].floor);
-          setVehicleId(() => response.data[0]._id);
         })
         .catch((err) => console.log(err));
     } else {

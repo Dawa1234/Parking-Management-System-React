@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormGroup, Input, Form, Label, Row, Col, Button } from "reactstrap";
 import "../../design/customer/payment.css";
 import parkingSlotServices from "../../services/parkingSlotServices";
@@ -8,11 +8,19 @@ const PaymentPage = ({
   amount,
   category,
   setAllParkingSlots,
+  floorid,
 }) => {
+  let [userData, setUserData] = useState({});
   const [khalti, setKhalti] = useState("");
   const [mpin, setMpin] = useState("");
   const [validkhalti, setValidKhalti] = useState(false);
   const [validmpin, setValidMpin] = useState(false);
+
+  useEffect(() => {
+    var user = window.localStorage.getItem("user");
+    setUserData(() => JSON.parse(user));
+  }, []);
+  // payment process
   const payAmount = () => {
     if (khalti === "" && mpin === "") {
       setValidKhalti(true);
@@ -33,12 +41,12 @@ const PaymentPage = ({
     const date = `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()} Date`;
     let data = {
       date: date,
-      userId: "aldajkasd",
+      userId: userData._id,
       amount: amount,
       vehicleCategory: category,
       selectedSlots: selectedSlots,
+      floorId: floorid,
     };
-    // console.log(data);
     parkingSlotServices
       .bookSlots(data)
       .then((response) => {
@@ -55,6 +63,7 @@ const PaymentPage = ({
             <span></span>
           </h1>
         </div>
+
         <div className="payment-form">
           <Form>
             <Row>

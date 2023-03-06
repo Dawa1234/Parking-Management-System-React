@@ -15,6 +15,8 @@ const DashboardPage = () => {
       .getAllFloor()
       .then((response) => {
         setAllFloors(() => response.data);
+        // retrive the value and revert into json object to set the user value
+        var admin = window.localStorage.getItem("admin");
       })
       .catch((err) => console.log(err));
     // set vehicle

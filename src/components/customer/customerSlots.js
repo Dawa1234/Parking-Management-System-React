@@ -161,7 +161,7 @@ const CustomerParkingSlotPage = () => {
                             }`
                           : "No user"}
                       </td>
-                      {/* Remove button */}
+                      {/* Select Slots */}
                       <td>
                         <FormGroup>
                           <Input
@@ -180,17 +180,24 @@ const CustomerParkingSlotPage = () => {
               )}
             </tbody>
           </Table>
-          <div id="add-floor">
-            <Button
-              color="success"
-              onClick={toggle}
-              disabled={selectedSlots.length === 0 ? true : false}
-            >
-              Book
-            </Button>
-          </div>
+          {/* Book button */}
+          {id ? (
+            <div id="add-floor">
+              <Button
+                color="success"
+                onClick={toggle}
+                disabled={selectedSlots.length === 0 ? true : false}
+              >
+                Book
+              </Button>
+            </div>
+          ) : (
+            ""
+          )}
+          {/* Payment content */}
           <Collapse isOpen={selectedSlots.length === 0 ? false : isOpen}>
             <PaymentPage
+              floorid={id}
               selectedSlots={selectedSlots}
               amount={amount}
               category={categoryVehicle}

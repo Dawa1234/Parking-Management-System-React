@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import "../../design/authentication_css/loginpage.css";
 import useServices from "../../services/useServices";
-import Register from "./registerpage";
 
 const Login = () => {
   const [UsernameController, setUsernameController] = useState("");
@@ -23,12 +22,23 @@ const Login = () => {
     useServices
       .LoginFunction(UsernameController, PasswordController)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data.role === "Admin") {
+          // save the token in the window local storage
           window.localStorage.setItem("token", response.data.token);
+          // Convert into json string to set the value in window local storage
+          window.localStorage.setItem(
+            "admin",
+            JSON.stringify(response.data.user)
+          );
           navigate("/dashboard");
         } else {
           window.localStorage.setItem("token", response.data.token);
+          // Convert into json string to set the value in window local storage
+          window.localStorage.setItem(
+            "user",
+            JSON.stringify(response.data.user)
+          );
           navigate("/user/dashboard");
         }
       })
