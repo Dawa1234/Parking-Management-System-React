@@ -1,3 +1,93 @@
 .customer-dashboard {
-  background-color: rgb(89, 240, 89);
+  width: 100%;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.customer-dashboard::-webkit-scrollbar {
+  display: none;
+}
+
+.customer-dashboard .contents {
+  overflow: hidden;
+  margin: 30px;
+  width: 400px;
+  height: 500px;
+  border-radius: 40px;
+  background-color: red;
+  box-shadow: 0px 0px 15px 5px rgb(175, 175, 175);
+  display: flex;
+  align-items: flex-end;
+  background-image: url("../../images/vehicle.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.customer-dashboard .contents1 {
+  overflow: hidden;
+  margin: 30px;
+  width: 400px;
+  height: 500px;
+  border-radius: 40px;
+  background-color: red;
+  box-shadow: 0px 0px 15px 5px rgb(175, 175, 175);
+  display: flex;
+  align-items: flex-end;
+  background-image: url("../../images/floor.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.customer-dashboard .contents2 {
+  overflow: hidden;
+  margin: 30px;
+  width: 400px;
+  height: 500px;
+  border-radius: 40px;
+  background-color: red;
+  box-shadow: 0px 0px 15px 5px rgb(175, 175, 175);
+  display: flex;
+  align-items: flex-end;
+  background-image: url("../../images/slot.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.customer-dashboard .contents div {
+  width: inherit;
+  height: 300px;
+  background-color: rgb(228, 228, 228);
+}
+.customer-dashboard .contents1 div {
+  width: inherit;
+  height: 300px;
+  background-color: rgb(228, 228, 228);
+}
+.customer-dashboard .contents2 div {
+  width: inherit;
+  height: 300px;
+  background-color: rgb(228, 228, 228);
+}
+
+.lower-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+p {
+  padding: 30px;
+  color: rgb(92, 92, 92);
+  font-size: 18px;
+}
+
+.view-more {
+  text-align: end;
+  padding-right: 10px;
+  width: 100%;
+}
+.view-more Button {
+  width: 110px;
+  height: 50px;
 }
