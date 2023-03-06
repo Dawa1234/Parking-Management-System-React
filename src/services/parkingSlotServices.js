@@ -55,6 +55,12 @@ const deleteSlot = async (floorId, slotId) => {
   );
 };
 
+// cancel booking a parking Slots
+const cancelBooking = async (slotId) => {
+  let data = {};
+  return await axios.put(`${baseUrl}/${slotId}`, data, config);
+};
+
 export default {
   getAllParlingSlots,
   removeOccupiedSlot,
@@ -63,4 +69,5 @@ export default {
   addSlotInFloor,
   deleteSlot,
   bookSlots,
+  cancelBooking,
 };

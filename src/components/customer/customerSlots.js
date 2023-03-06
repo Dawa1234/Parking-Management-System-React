@@ -12,6 +12,7 @@ const CustomerParkingSlotPage = () => {
   const [query, setQuery] = useState("");
   let [categoryVehicle, setCategoryVehicle] = useState("");
   let [amount, setAmount] = useState("");
+  let [userData, setUserData] = useState({});
   let [selectedSlots, setSelectedSlots1] = useState([]);
   //   For filter
   const toggleFilter = (e) => {
@@ -33,13 +34,20 @@ const CustomerParkingSlotPage = () => {
   useEffect(() => {
     // if route is coming from the parameter
     if (id) {
+      // get the user value
+      var user = window.localStorage.getItem("user");
+      setUserData(() => JSON.parse(user));
       parkingSlotServices
         .getParkingSlotByFloor(id)
         .then((response) => {
+          console.log(response.data.parkingSlots);
           setAllParkingSlots(() => response.data.parkingSlots);
         })
         .catch((err) => console.log(err));
     } else {
+      // get the user value
+      var user = window.localStorage.getItem("user");
+      setUserData(() => JSON.parse(user));
       parkingSlotServices
         .getAllParlingSlots()
         .then((response) => {
@@ -155,9 +163,11 @@ const CustomerParkingSlotPage = () => {
                       <td>
                         {item.booked
                           ? `${
-                              item.user === null || item.user === undefined
-                                ? "Offline User"
-                                : `${item.user.username}`
+                              item.userId === null || item.userId === undefined
+                                ? "Other User"
+                                : userData._id == item.userId
+                                ? "You"
+                                : "Other User"
                             }`
                           : "No user"}
                       </td>
